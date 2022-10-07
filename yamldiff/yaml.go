@@ -63,6 +63,10 @@ func (y *YamlDiff) Dump() string {
 	return y.d.Dump()
 }
 
+func (y *YamlDiff) Status() DiffStatus {
+	return y.d.status
+}
+
 func Do(rawA RawYamlList, rawB RawYamlList) []*YamlDiff {
 	return sortResult(rawA, rawB, findMinimumDiffs(performAllDiff(rawA, rawB)))
 }
@@ -101,7 +105,7 @@ func performAllDiff(rawA RawYamlList, rawB RawYamlList) []*YamlDiff {
 
 func findMinimumDiffs(diffs []*YamlDiff) []*YamlDiff {
 	sort.Slice(diffs, func(i, j int) bool {
-		if diffs[i].d.status == diffStatusSame {
+		if diffs[i].d.status == DiffStatusSame {
 			return true
 		}
 		return diffs[i].d.diffCount < diffs[j].d.diffCount

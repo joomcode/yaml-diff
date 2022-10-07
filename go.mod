@@ -1,4 +1,4 @@
-module github.com/sters/yaml-diff
+module github.com/joomcode/yaml-diff
 
 go 1.19
 

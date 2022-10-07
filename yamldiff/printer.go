@@ -116,14 +116,14 @@ func (d *diff) dump(b io.Writer, level int) {
 	}
 
 	switch d.status {
-	case diffStatusSame:
+	case DiffStatusSame:
 		dumpData(b, " ", level, d.a)
-	case diffStatusDiff:
+	case DiffStatusDiff:
 		dumpData(b, "-", level, d.a)
 		dumpData(b, "+", level, d.b)
-	case diffStatus1Missing:
+	case DiffStatus1Missing:
 		dumpData(b, "+", level, d.b)
-	case diffStatus2Missing:
+	case DiffStatus2Missing:
 		dumpData(b, "-", level, d.a)
 	}
 }
@@ -142,14 +142,14 @@ func (d *diff) dumpTryArray(b io.Writer, level int) {
 		}
 
 		switch v.status {
-		case diffStatusSame:
+		case DiffStatusSame:
 			dumpArrayItem(b, " ", level, v.a)
-		case diffStatusDiff:
+		case DiffStatusDiff:
 			dumpArrayItem(b, "-", level, v.a)
 			dumpArrayItem(b, "+", level, v.b)
-		case diffStatus1Missing:
+		case DiffStatus1Missing:
 			dumpArrayItem(b, "+", level, v.b)
-		case diffStatus2Missing:
+		case DiffStatus2Missing:
 			dumpArrayItem(b, "-", level, v.a)
 		}
 	}
@@ -210,14 +210,14 @@ func (d *diff) dumpTryMap(b io.Writer, level int) {
 		}
 
 		switch r.v.status {
-		case diffStatusSame:
+		case DiffStatusSame:
 			dumpMapItem(b, " ", level, r.k, r.v.a)
-		case diffStatusDiff:
+		case DiffStatusDiff:
 			dumpMapItem(b, "-", level, r.k, r.v.a)
 			dumpMapItem(b, "+", level, r.k, r.v.b)
-		case diffStatus1Missing:
+		case DiffStatus1Missing:
 			dumpMapItem(b, "+", level, r.k, r.v.b)
-		case diffStatus2Missing:
+		case DiffStatus2Missing:
 			dumpMapItem(b, "-", level, r.k, r.v.a)
 		}
 	}
